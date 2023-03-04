@@ -1,2 +1,2 @@
 # Osucraft
-[Spustit](https://github.com/OreonCZ/Osucraft.git)
+[Spustit](https://oreoncz.github.io/Osucraft/)
