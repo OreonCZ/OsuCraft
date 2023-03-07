@@ -403,3 +403,123 @@ body {
     display: none;
 }
 
+#hlasitost {
+    right: 0px;
+    width: 400px;
+   text-align: center;
+   display: none;
+   color: whitesmoke;
+    text-shadow: 0px 2px black;
+    font-size: 20px;
+    background-color: gray;
+    border: 2px solid black;
+    padding-top: 10px;
+    margin: 0 auto;
+    position: relative;
+    top: 200px;
+}
+#hlasitost:hover {
+    background-color:dimgray;
+    cursor: pointer;
+    
+}
+#hlasitostDva {
+    width: 400px;
+   text-align: center;
+   display: none;
+   color: whitesmoke;
+    text-shadow: 0px 2px black;
+    font-size: 20px;
+    background-color: gray;
+    border: 2px solid black;
+    padding-top: 10px;
+    margin: 0 auto;
+    position: relative;
+    top: 210px;
+}
+#hlasitostDva:hover {
+    background-color:dimgray;
+    cursor: pointer;
+}
+#cislo {
+    width: 400px;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 30px;
+    display: none;
+    text-shadow: 0px 2px black;
+    margin: 0 auto;
+    position: relative;
+    top: 210px;
+}
+#done {
+    width: 500px;
+   text-align: center;
+   display: none;
+   color: whitesmoke;
+    text-shadow: 0px 2px black;
+    font-size: 20px;
+    background-color: gray;
+    border: 2px solid black;
+    padding-top: 10px;
+    margin: 0 auto;
+    position: relative;
+    top: 300px;
+}
+#done:hover {
+    background-color:dimgray;
+    cursor: pointer;
+}
+
+
+#cisloSpeed {
+    width: 400px;
+    position: absolute;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 30px;
+    display: none;
+    text-shadow: 0px 2px black;
+    top: 250px;
+    margin: 0 auto;
+    position: relative;
+}
+#speed {
+    width: 400px;
+   position: absolute;
+   text-align: center;
+   display: none;
+   color: whitesmoke;
+    text-shadow: 0px 2px black;
+    font-size: 20px;
+    background-color: gray;
+    border: 2px solid black;
+    padding-top: 10px;
+    top: 240px;
+    margin: 0 auto;
+    position: relative;
+
+}
+#speed:hover {
+    background-color:dimgray;
+    cursor: pointer;
+}
+#speedDown {
+    width: 400px;
+   position: absolute;
+   text-align: center;
+   display: none;
+   color: whitesmoke;
+    text-shadow: 0px 2px black;
+    font-size: 20px;
+    background-color: gray;
+    border: 2px solid black;
+    padding-top: 10px;
+    top: 250px;
+    margin: 0 auto;
+    position: relative;
+}
+#speedDown:hover {
+    background-color:dimgray;
+    cursor: pointer;
+}

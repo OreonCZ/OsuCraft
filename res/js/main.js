@@ -42,7 +42,21 @@ const hudba = document.getElementById("hudba");
 const pauza = document.getElementById("pauza");
 const hrat = document.getElementById("hrat");
 
+const volum = document.getElementById("hlasitost");
+const volumDown = document.getElementById("hlasitostDva");
+const cislo = document.getElementById("cislo");
+const cisloSpeed = document.getElementById("cisloSpeed");
+const speed = document.getElementById("speed");
+const speedDown = document.getElementById("speedDown");
+
+const done = document.getElementById("done");
+
 const duration = 3;
+
+let number = 50;
+
+let move = 500;
+let procent = 100;
 
 let scoreNumber = 0;
 let x = 0;
@@ -50,6 +64,8 @@ let y = 0;
 
 let smrt = 0;
 let smrtPlus = 1;
+
+let zvuk = 0.5;
 
 
 let gamble = [
@@ -77,7 +93,7 @@ let gamble = [
 
 let remainingTime = duration;
 
-let cas = setInterval(zmena, 500);
+let cas = setInterval(zmena, move);
 
 setInterval(() => {
     xx = pole.offsetWidth - 75;
@@ -105,7 +121,7 @@ function outplay() {
         document.body.style.backgroundImage = "url(./res/css/ded.jpg)";
         boom.play();
         boom.currentTime = 4;
-        boom.volume = 0.3;
+        boom.volume = zvuk;
         smrt += smrtPlus;
         dvacet.innerHTML = `${smrt} deaths`;
 
@@ -190,12 +206,14 @@ function zmena() {
         pauza.style.display = "block";
         hrat.style.display = "none";
         hudba.play();
-    hudba.volume = 0.3;
+    hudba.volume = zvuk;
     hudba.currentTime = 0;
     }
     
 
 play.onclick = () => {
+    clearInterval(cas);
+    cas = setInterval(zmena, move);
     nadpis.style.display = "none";
     play.style.display = "none";
     settings.style.display = "none";
@@ -211,17 +229,28 @@ play.onclick = () => {
     zmena();
     outplay();
     click.play();
-    click.volume = 0.3;
+    click.volume = zvuk;
     click.currentTime = 0.2;
     hudba.play();
-    hudba.volume = 0.3;
+    hudba.volume = zvuk;
     hudba.currentTime = 0;
     setInterval(() => {
       kulicka.style.display = "block";
       if(remainingTime == 0){ 
         kulicka.style.display = "none";
        }
-    },500)
+    },move)
+    if(move == 100){
+        document.body.style.backgroundImage = "url(./res/css/stormy.png)"; 
+        kulicka.style.opacity = "0.2"
+        info.innerHTML = `摸他`;
+        info.style.color = "red"
+    }
+    else{
+        kulicka.style.opacity = "1";
+        info.style.color = "greenyellow"
+        info.innerHTML = `Touch that creeper`;
+    }
     
 }
 let time = setInterval(outplay, 1000);
@@ -229,7 +258,7 @@ let time = setInterval(outplay, 1000);
 kulicka.onmouseover = () => {
     zmena();
     clearInterval(cas);
-    cas = setInterval(zmena, 500);
+    cas = setInterval(zmena, move);
     clearInterval(time);
     time = setInterval(outplay, 750);
     remainingTime = 3;
@@ -292,14 +321,25 @@ dedTextDva.onclick = () => {
     casomira.style.display = "none";
     casomira.style.top = "-822px";
     click.play();
-    click.volume = 0.3;
+    click.volume = zvuk;
     click.currentTime = 0.2;
     pole.style.cursor = "crosshair";
+    if(move == 100){
+        document.body.style.backgroundImage = "url(./res/css/stormy.png)"; 
+        kulicka.style.opacity = "0.2";
+        info.innerHTML = `摸他`;
+        info.style.color = "red";
+    }
+    else{
+        kulicka.style.opacity = "1";
+        info.style.color = "greenyellow"
+        info.innerHTML = `Touch that creeper`;
+    }
 
 }
 dedText.onclick = () => {
     click.play();
-    click.volume = 0.3;
+    click.volume = zvuk;
     click.currentTime = 0.2;
     document.body.style.backgroundImage = "url(./res/css/craftmine.jpeg)";
     dedTextDva.style.display = "none";
@@ -338,12 +378,109 @@ dedText.onclick = () => {
     pauza.style.display = "none";
     hrat.style.display = "none";
     scoreNumber = 0;
-    hudba.pause();
-    
+    hudba.pause();    
 }
 
 settings.onclick = () => {
     click.play();
-    click.volume = 0.3;
+    click.volume = zvuk;
     click.currentTime = 0.2;
+    document.body.style.backgroundImage = "url(./res/css/dirt.webp)";
+    nadpis.style.display = "none";
+    settings.style.display = "none";
+    play.style.display = "none";
+    volum.style.display = "block";
+    volumDown.style.display = "block";
+    cislo.style.display = "block";
+    cislo.innerHTML = `${number}%`;
+    done.style.display = "block";
+    speedDown.style.display = "block";
+    speed.style.display = "block";
+    cisloSpeed.style.display = "block";
+    cisloSpeed.innerHTML = `${procent}%`;
+    if(move<=100){
+        speed.style.display = "none";
+        cisloSpeed.innerHTML = `Beware`;  
+    } 
+    if(move>=1400){
+        speedDown.style.display = "none";
+    }   
+    if(zvuk>0.9){
+        volum.style.display = "none";
+    }
+    if(zvuk<0.15){
+        volumDown.style.display = "none";
+        cislo.innerHTML = `${number}%`;  
+    }  
+}
+volum.onclick = () => {
+    zvuk+=0.1;
+    number+=10;
+    click.play();
+    click.volume = zvuk;
+    click.currentTime = 0.2;
+    volumDown.style.display = "block";
+    cislo.innerHTML = `${number}%`;
+    if(zvuk>0.9){
+        volum.style.display = "none";
+    }
+}
+
+    
+volumDown.onclick = () => {
+    zvuk-=0.1;
+    number-=10;
+    click.play();
+    click.volume = zvuk;
+    click.currentTime = 0.2;
+    volum.style.display = "block";
+    cislo.innerHTML = `${number}%`;
+    if(zvuk<0.15){
+        volumDown.style.display = "none";
+        cislo.innerHTML = `${number}%`;  
+    }  
+}
+
+done.onclick= () => {
+    document.body.style.backgroundImage = "url(./res/css/craftmine.jpeg)";
+    nadpis.style.display = "block";
+    settings.style.display = "block";
+    play.style.display = "block";
+    volum.style.display = "none";
+    volumDown.style.display = "none";
+    cislo.style.display = "none";
+    speed.style.display = "none";
+    speedDown.style.display = "none";
+    cisloSpeed.style.display = "none";
+    done.style.display = "none";
+    click.play();
+    click.volume = zvuk;
+    click.currentTime = 0.2;
+}
+speed.onclick = () => {
+    procent+= 5;
+    move-=50;
+    console.log(move);
+    click.play();
+    click.volume = zvuk;
+    click.currentTime = 0.2;
+    speedDown.style.display = "block";
+    cisloSpeed.innerHTML = `${procent}%`;  
+    if(move<=100){
+        speed.style.display = "none";
+        cisloSpeed.innerHTML = `BEWARE`;  
+    }  
+}
+speedDown.onclick = () => {
+    procent-= 5;
+    move+=50;
+    console.log(move);
+    click.play();
+    click.volume = zvuk;
+    click.currentTime = 0.2;
+    cisloSpeed.innerHTML = `${procent}%`;  
+    speed.style.display = "block";
+    if(move>=1400){
+        speedDown.style.display = "none";
+    }  
 }
